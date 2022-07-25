@@ -28,9 +28,15 @@ namespace ToDoList.Controllers
     [HttpPost]
     public ActionResult Create(Item item)
     {
-        _db.Items.Add(item);
-        _db.SaveChanges();
-        return RedirectToAction("Index");
+      _db.Items.Add(item);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    public ActionResult Details(int id)
+    {
+      Item thisItem = _db.Items.FirstOrDefault(item => item.ItemId == id);
+      return View(thisItem);
     }
   }
 }
